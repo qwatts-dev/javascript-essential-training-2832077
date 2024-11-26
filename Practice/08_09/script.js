@@ -57,3 +57,38 @@ const content = `
       }</span></li>
     </ul>  
 `;
+
+/* - Helper image function
+ *   - Creates new <figure> element
+ *   - Adds <img> markup pointing to frogpack.image
+ *   - Adds <figcaption> element with image description
+ *   - Returns <figure> element to where function is called
+ */
+const imageFigure = (obj) => {
+  console.log(obj);
+  let figure = document.createElement("figure");
+  let img = document.createElement("img");
+  img.setAttribute("src", obj.image);
+  img.style.maxWidth = "600px";
+  img.style.maxHeight = "200px";
+  let figCaption = document.createElement("figcaption");
+  figCaption.innerHTML = obj.name;
+  figure.append(img, figCaption);
+  return figure;
+};
+
+/*
+ * Create two functions:
+ * - Main function
+ *  - Creates new <article> element
+ *  - Populates <article> with content (see const content)
+ *  - Returns <article> element to where function is called
+ */
+const articleElement = (frogpack) => {
+  const article = document.createElement("article");
+  article.innerHTML = content;
+  article.prepend(imageFigure(frogpack));
+  return article;
+};
+
+document.querySelector("main").append(articleElement(frogpack));
